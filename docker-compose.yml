@@ -21,7 +21,7 @@ services:
     image: mongo
     hostname: orders-db
     restart: always
-	environment:
+    environment:
       - DT_CUSTOM_PROP=app=orders-db,environment=dev
     cap_drop:
       - all
