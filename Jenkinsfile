@@ -92,8 +92,8 @@ agent  { label 'master' }
             }
         }
       steps {
-        echo "Waiting for the service to start..."
-        sleep 350
+          echo "Waiting for the service to start..."
+          sleep 350
 
           script {
               neoloadRun executable: '/home/neoload/neoload/bin/NeoLoadCmd',
@@ -107,7 +107,7 @@ agent  { label 'master' }
                               'ErrorRate'
                       ]
           }
-
+      }
 
     }
      stage('Sanity Check') {
