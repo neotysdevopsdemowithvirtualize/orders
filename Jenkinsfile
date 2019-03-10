@@ -43,7 +43,7 @@ agent  { label 'master' }
         steps {
             withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'TOKEN', usernameVariable: 'USER')]) {
                 sh "cp ./target/*.jar ./docker/${APP_NAME}"
-                sh "docker build --build-arg BUILD_VERSION=${VERSION} --build-arg COMMIT=$COMMIT -t ${TAG_DEV} $WORKSPACE/docker/orders/"
+                sh "docker build -t ${TAG_DEV} $WORKSPACE/docker/${APP_NAME}/"
                 sh "docker login --username=${USER} --password=${TOKEN}"
                 sh "docker push ${TAG_DEV}"
             }
@@ -91,7 +91,7 @@ agent  { label 'master' }
     stage('Run health check in dev') {
         agent {
             dockerfile {
-                args '--user root -v /tmp:/tmp --network=carts_master_default'
+                args '--user root -v /tmp:/tmp --network=orders_master_default'
                 dir 'infrastructure/infrastructure/neoload/controller'
             }
         }
@@ -117,7 +117,7 @@ agent  { label 'master' }
      stage('Sanity Check') {
          agent {
              dockerfile {
-                 args '--user root -v /tmp:/tmp --network=carts_master_default'
+                 args '--user root -v /tmp:/tmp --network=orders_master_default'
                  dir 'infrastructure/infrastructure/neoload/controller'
              }
          }
@@ -157,15 +157,11 @@ agent  { label 'master' }
     stage('Run functional check in dev') {
         agent {
             dockerfile {
-                args '--user root -v /tmp:/tmp --network=carts_master_default'
+                args '--user root -v /tmp:/tmp --network=orders_master_default'
                 dir 'infrastructure/infrastructure/neoload/controller'
             }
         }
-      when {
-        expression {
-          return env.BRANCH_NAME ==~ 'release/.*' || env.BRANCH_NAME ==~'master'
-        }
-      }
+
       steps {
           script {
               neoloadRun executable: '/home/neoload/neoload/bin/NeoLoadCmd',
