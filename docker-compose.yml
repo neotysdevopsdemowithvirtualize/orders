@@ -2,7 +2,7 @@ version: '2'
 
 services:
   orders:
-    image: weaveworksdemos/orders
+    image: TAG_TO_REPLACE
     hostname: orders
     restart: always
     cap_drop:
@@ -14,13 +14,15 @@ services:
       - /tmp:rw,noexec,nosuid
     environment:
       - reschedule=on-node-failure
-      - ZIPKIN=zipkin
+      - DT_CUSTOM_PROP=app=orders,environment=dev
     ports:
       - "8082:80"
   orders-db:
     image: mongo
     hostname: orders-db
     restart: always
+	environment:
+      - DT_CUSTOM_PROP=app=orders-db,environment=dev
     cap_drop:
       - all
     cap_add:
@@ -32,20 +34,3 @@ services:
       - /tmp:rw,noexec,nosuid
     environment:
       - reschedule=on-node-failure
-  zipkin:
-    image: openzipkin/zipkin 
-    hostname: zipkin
-    restart: always
-    cap_drop:
-      - all
-    cap_add:
-      - CHOWN
-      - SETGID
-      - SETUID
-    read_only: true
-    tmpfs:
-      - /tmp:rw,noexec,nosuid
-    environment:
-      - reschedule=on-node-failure
-    ports:
-      - "9411:9411"
