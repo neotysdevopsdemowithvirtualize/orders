@@ -27,7 +27,7 @@ agent  { label 'master' }
    stage('Checkout') {
               agent { label 'master' }
               steps {
-                  git  url:"https://github.com/${GROUP}/carts.git",
+                  git  url:"https://github.com/${GROUP}/${APP_NAME}.git",
                           branch :'master'
               }
           }
@@ -42,12 +42,13 @@ agent  { label 'master' }
 
         steps {
             withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'TOKEN', usernameVariable: 'USER')]) {
-                sh "cp ./target/*.jar ./docker/orders"
+                sh "cp ./target/*.jar ./docker/${APP_NAME}"
                 sh "docker build --build-arg BUILD_VERSION=${VERSION} --build-arg COMMIT=$COMMIT -t ${TAG_DEV} $WORKSPACE/docker/orders/"
                 sh "docker login --username=${USER} --password=${TOKEN}"
                 sh "docker push ${TAG_DEV}"
             }
 
+        }
     }
 
     stage('Deploy to dev ') {
