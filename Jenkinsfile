@@ -37,7 +37,7 @@ agent  { label 'master' }
 
         }
       }
-    }
+
     stage('Docker build') {
 
         steps {
@@ -52,11 +52,7 @@ agent  { label 'master' }
     }
 
     stage('Deploy to dev ') {
-        when {
-            expression {
-                return env.BRANCH_NAME ==~ 'release/.*' || env.BRANCH_NAME ==~ 'master'
-            }
-        }
+
         steps {
             sh "sed -i 's,TAG_TO_REPLACE,${TAG_DEV},' $WORKSPACE/docker-compose.yml"
             sh 'docker-compose -f $WORKSPACE/docker-compose.yml up -d'
