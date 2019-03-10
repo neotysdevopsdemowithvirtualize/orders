@@ -100,7 +100,7 @@ agent  { label 'master' }
                       project: "$WORKSPACE/target/neoload/Orders_NeoLoad/Orders_NeoLoad.nlp",
                       testName: 'HealthCheck_orders_${VERSION}_${BUILD_NUMBER}',
                       testDescription: 'HealthCheck_orders_${VERSION}_${BUILD_NUMBER}',
-                      commandLineOption: "-nlweb -loadGenerators $WORKSPACE/infrastructure/infrastructure/neoload/lg/lg.yaml -nlwebToken $NLAPIKEY -variables host=orders,port=8082,basicPath=${BASICCHECKURI}",
+                      commandLineOption: "-nlweb -loadGenerators $WORKSPACE/infrastructure/infrastructure/neoload/lg/lg.yaml -nlwebToken $NLAPIKEY -variables host=orders,port=8083,basicPath=${BASICCHECKURI}",
                       scenario: 'DynatraceSanityCheck', sharedLicense: [server: 'NeoLoad Demo License', duration: 2, vuCount: 200],
                       trendGraphs: [
                               [name: 'Limit test Catalogue API Response time', curve: ['CatalogueList>Actions>Get Catalogue List'], statistic: 'average'],
@@ -123,7 +123,7 @@ agent  { label 'master' }
                           project: "$WORKSPACE/target/neoload/Orders_NeoLoad/Orders_NeoLoad.nlp",
                           testName: 'DynatraceSanityCheck_orders_${VERSION}_${BUILD_NUMBER}',
                           testDescription: 'DynatraceSanityCheck_orders_${VERSION}_${BUILD_NUMBER}',
-                          commandLineOption: "-nlweb -loadGenerators $WORKSPACE/infrastructure/infrastructure/neoload/lg/lg.yaml -nlwebToken $NLAPIKEY -variables host=orders,port=8082",
+                          commandLineOption: "-nlweb -loadGenerators $WORKSPACE/infrastructure/infrastructure/neoload/lg/lg.yaml -nlwebToken $NLAPIKEY -variables host=orders,port=8083",
                           scenario: 'DYNATRACE_SANITYCHECK', sharedLicense: [server: 'NeoLoad Demo License', duration: 2, vuCount: 200],
                           trendGraphs: [
                                   [name: 'Limit test Catalogue API Response time', curve: ['CatalogueList>Actions>Get Catalogue List'], statistic: 'average'],
@@ -164,7 +164,7 @@ agent  { label 'master' }
                       project: "$WORKSPACE/target/neoload/Orders_NeoLoad/Orders_NeoLoad.nlp",
                       testName: 'FuncCheck_orders__${VERSION}_${BUILD_NUMBER}',
                       testDescription: 'FuncCheck_orders__${VERSION}_${BUILD_NUMBER}',
-                      commandLineOption: "-nlweb -loadGenerators $WORKSPACE/infrastructure/infrastructure/neoload/lg/lg.yaml -nlwebToken $NLAPIKEY -variables host=orders,port=8082,orderPath=${ORDERSURI}",
+                      commandLineOption: "-nlweb -loadGenerators $WORKSPACE/infrastructure/infrastructure/neoload/lg/lg.yaml -nlwebToken $NLAPIKEY -variables host=orders,port=8083,orderPath=${ORDERSURI}",
                       scenario: 'Order_Load', sharedLicense: [server: 'NeoLoad Demo License', duration: 2, vuCount: 200],
                       trendGraphs: [
                               [name: 'Limit test Catalogue API Response time', curve: ['CatalogueList>Actions>Get Catalogue List'], statistic: 'average'],
