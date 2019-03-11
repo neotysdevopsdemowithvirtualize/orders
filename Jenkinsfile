@@ -139,8 +139,8 @@ agent  { label 'master' }
                   sh "git config remote.origin.url https://github.com/${env.GITHUB_ORGANIZATION}/carts"
                   sh "git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/*"
                   sh "git config remote.origin.url https://github.com/${env.GITHUB_ORGANIZATION}/carts"
-                  sh "git add ${OUTPUTSANITYCHECK}"
-                  sh "git commit -m 'Update Sanity_Check_${BUILD_NUMBER} ${env.APP_NAME} '"
+                  //sh "git add ${OUTPUTSANITYCHECK}"
+                 // sh "git commit -m 'Update Sanity_Check_${BUILD_NUMBER} ${env.APP_NAME} '"
                   //  sh "git pull -r origin master"
                   //#TODO handle this exeption
                   //   sh "git push origin HEAD:master"

@@ -14,15 +14,13 @@ services:
       - /tmp:rw,noexec,nosuid
     environment:
       - reschedule=on-node-failure
-      - DT_CUSTOM_PROP=app=orders,environment=dev
+      - DT_CUSTOM_PROP=app=orders environment=dev
     ports:
       - "8083:80"
   orders-db:
     image: mongo
     hostname: orders-db
     restart: always
-    environment:
-      - DT_CUSTOM_PROP=app=orders-db,environment=dev
     cap_drop:
       - all
     cap_add:
@@ -34,3 +32,4 @@ services:
       - /tmp:rw,noexec,nosuid
     environment:
       - reschedule=on-node-failure
+      - DT_CUSTOM_PROP=app=orders-db environment=dev
