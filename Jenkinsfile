@@ -89,7 +89,7 @@ agent  { label 'master' }
             dockerfile {
                 args '--user root -v /tmp:/tmp --network=orders_master_default'
                 dir 'infrastructure/infrastructure/neoload/controller'
-                reuseNode true
+
             }
         }
       steps {
@@ -195,7 +195,7 @@ agent  { label 'master' }
     post {
 
         always {
-
+            cleanWs()
             sh 'docker-compose -f $WORKSPACE/infrastructure/infrastructure/neoload/lg/docker-compose.yml down'
             sh 'docker-compose -f $WORKSPACE/docker-compose.yml down'
 
