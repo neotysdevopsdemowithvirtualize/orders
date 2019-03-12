@@ -25,7 +25,7 @@ agent  { label 'master' }
   }
   stages {
    stage('Checkout') {
-              agent { label 'master' }
+
               steps {
                   git  url:"https://github.com/${GROUP}/${APP_NAME}.git",
                           branch :'master'
