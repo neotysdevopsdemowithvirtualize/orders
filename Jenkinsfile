@@ -94,6 +94,7 @@ agent  { label 'master' }
       steps {
           echo "Waiting for the service to start..."
           sleep 150
+          sh "mvn -B clean test -DdynatraceId=$DYNATRACEID -DneoLoadWebAPIKey=$NLAPIKEY -DdynatraceApiKey=$DYNATRACEAPIKEY -Dtags=${NL_DT_TAG} -DoutPutReferenceFile=$OUTPUTSANITYCHECK -DcustomActionPath=$DYNATRACEPLUGINPATH -DjsonAnomalieDetectionFile=$WORKSPACE/monspec/orders_anomalieDection.json"
 
           script {
               neoloadRun executable: '/home/neoload/neoload/bin/NeoLoadCmd',
@@ -118,6 +119,7 @@ agent  { label 'master' }
              }
          }
           steps {
+             sh "mvn -B clean test -DdynatraceId=$DYNATRACEID -DneoLoadWebAPIKey=$NLAPIKEY -DdynatraceApiKey=$DYNATRACEAPIKEY -Dtags=${NL_DT_TAG} -DoutPutReferenceFile=$WORKSPACE/monspec/orders_anomalieDection.json -DcustomActionPath=$DYNATRACEPLUGINPATH -DjsonAnomalieDetectionFile=$WORKSPACE/monspec/orders_anomalieDection.json"
               script {
                   neoloadRun executable: '/home/neoload/neoload/bin/NeoLoadCmd',
                           project: "$WORKSPACE/target/neoload/Orders_NeoLoad/Orders_NeoLoad.nlp",
