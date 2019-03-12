@@ -195,10 +195,10 @@ agent  { label 'master' }
     post {
 
         always {
-            cleanWs()
+
             sh 'docker-compose -f $WORKSPACE/infrastructure/infrastructure/neoload/lg/docker-compose.yml down'
             sh 'docker-compose -f $WORKSPACE/docker-compose.yml down'
-
+            cleanWs()
         }
 
     }
