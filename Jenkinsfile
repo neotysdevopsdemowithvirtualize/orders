@@ -94,7 +94,7 @@ agent  { label 'master' }
         }
       steps {
           echo "Waiting for the service to start..."
-          sleep 150
+          sleep 90
 
           script {
               neoloadRun executable: '/home/neoload/neoload/bin/NeoLoadCmd',
