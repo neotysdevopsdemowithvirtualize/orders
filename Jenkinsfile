@@ -104,7 +104,7 @@ agent  { label 'master' }
                       commandLineOption: "-nlweb -L Population_BasicCheckTesting=$WORKSPACE/infrastructure/infrastructure/neoload/lg/remote.txt -L Population_Dynatrace_Integration=$WORKSPACE/infrastructure/infrastructure/neoload/lg/local.txt -nlwebToken $NLAPIKEY -variables host=orders,port=80,basicPath=${BASICCHECKURI}",
                       scenario: 'DynatraceSanityCheck', sharedLicense: [server: 'NeoLoad Demo License', duration: 2, vuCount: 200],
                       trendGraphs: [
-                              [name: 'Limit test HealthAPI Response time', curve: ['BasicCheckTesting>Actions>BasicCheck"], statistic: 'average'],
+                              [name: 'Limit test HealthAPI Response time', curve: ['BasicCheckTesting>Actions>BasicCheck'], statistic: 'average'],
                               'ErrorRate'
                       ]
           }
