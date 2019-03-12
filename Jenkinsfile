@@ -104,7 +104,7 @@ agent  { label 'master' }
                       commandLineOption: "-nlweb -L Population_BasicCheckTesting=$WORKSPACE/infrastructure/infrastructure/neoload/lg/remote.txt -L Population_Dynatrace_Integration=$WORKSPACE/infrastructure/infrastructure/neoload/lg/local.txt -nlwebToken $NLAPIKEY -variables host=orders,port=80,basicPath=${BASICCHECKURI}",
                       scenario: 'DynatraceSanityCheck', sharedLicense: [server: 'NeoLoad Demo License', duration: 2, vuCount: 200],
                       trendGraphs: [
-                              [name: 'Limit test Catalogue API Response time', curve: ['CatalogueList>Actions>Get Catalogue List'], statistic: 'average'],
+                              [name: 'Limit test HealthAPI Response time', curve: ['BasicCheckTesting>Actions>BasicCheck"], statistic: 'average'],
                               'ErrorRate'
                       ]
           }
@@ -129,7 +129,6 @@ agent  { label 'master' }
                           commandLineOption: "-nlweb -L  Population_Dynatrace_SanityCheck=$WORKSPACE/infrastructure/infrastructure/neoload/lg/local.txt -nlwebToken $NLAPIKEY -variables host=orders,port=80",
                           scenario: 'DYNATRACE_SANITYCHECK', sharedLicense: [server: 'NeoLoad Demo License', duration: 2, vuCount: 200],
                           trendGraphs: [
-                                  [name: 'Limit test Catalogue API Response time', curve: ['CatalogueList>Actions>Get Catalogue List'], statistic: 'average'],
                                   'ErrorRate'
                           ]
               }
@@ -171,7 +170,7 @@ agent  { label 'master' }
                       commandLineOption: "-nlweb Population_Orders=$WORKSPACE/infrastructure/infrastructure/neoload/lg/remote.txt -L Population_Dynatrace_Integration=$WORKSPACE/infrastructure/infrastructure/neoload/lg/local.txt -nlwebToken $NLAPIKEY -variables carts_host=orders,carts_port=80,orderPath=${ORDERSURI}",
                       scenario: 'Order_Load', sharedLicense: [server: 'NeoLoad Demo License', duration: 2, vuCount: 200],
                       trendGraphs: [
-                              [name: 'Limit test Catalogue API Response time', curve: ['CatalogueList>Actions>Get Catalogue List'], statistic: 'average'],
+                              [name: 'Limit test Orders API Response time', curve: ['Orders>Actions>Orders'], statistic: 'average'],
                               'ErrorRate'
                       ]
           }
