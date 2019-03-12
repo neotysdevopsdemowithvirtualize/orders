@@ -89,12 +89,12 @@ agent  { label 'master' }
             dockerfile {
                 args '--user root -v /tmp:/tmp --network=orders_master_default'
                 dir 'infrastructure/infrastructure/neoload/controller'
+                reuseNode true
             }
         }
       steps {
           echo "Waiting for the service to start..."
           sleep 150
-          sh "mvn -B clean test -DdynatraceId=$DYNATRACEID -DneoLoadWebAPIKey=$NLAPIKEY -DdynatraceApiKey=$DYNATRACEAPIKEY -Dtags=${NL_DT_TAG} -DoutPutReferenceFile=$OUTPUTSANITYCHECK -DcustomActionPath=$DYNATRACEPLUGINPATH -DjsonAnomalieDetectionFile=$WORKSPACE/monspec/orders_anomalieDection.json"
 
           script {
               neoloadRun executable: '/home/neoload/neoload/bin/NeoLoadCmd',
@@ -116,6 +116,7 @@ agent  { label 'master' }
              dockerfile {
                  args '--user root -v /tmp:/tmp --network=orders_master_default'
                  dir 'infrastructure/infrastructure/neoload/controller'
+                 reuseNode true
              }
          }
           steps {
@@ -157,6 +158,7 @@ agent  { label 'master' }
             dockerfile {
                 args '--user root -v /tmp:/tmp --network=orders_master_default'
                 dir 'infrastructure/infrastructure/neoload/controller'
+                reuseNode true
             }
         }
 
